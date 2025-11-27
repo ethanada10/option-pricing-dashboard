@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Option Pricing Interface</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <h1>Option Pricing Dashboard</h1>
+      <p>Black–Scholes · Binomial CRR · Monte Carlo – European Call & Put</p>
+    </header>
+
+    <main class="main">
+      <section class="card">
+        <h2>Parameters</h2>
+        <form id="pricing-form">
+          <div class="form-grid">
+            <label>
+              Spot S₀
+              <input type="number" id="S" step="0.01" value="100" required />
+            </label>
+            <label>
+              Strike K
+              <input type="number" id="K" step="0.01" value="100" required />
+            </label>
+            <label>
+              Risk-free rate r
+              <input type="number" id="r" step="0.001" value="0.02" required />
+            </label>
+            <label>
+              Volatility σ
+              <input type="number" id="sigma" step="0.001" value="0.2" required />
+            </label>
+            <label>
+              Maturity T (years)
+              <input type="number" id="T" step="0.01" value="1" required />
+            </label>
+            <label>
+              Binomial steps N
+              <input type="number" id="steps" step="1" min="1" value="100" required />
+            </label>
+            <label>
+              Monte Carlo simulations
+              <input type="number" id="mcPaths" step="1000" min="1000" value="50000" />
+            </label>
+          </div>
+
+          <div class="form-row">
+            <fieldset>
+              <legend>Option type</legend>
+              <label><input type="radio" name="type" value="call" checked /> Call</label>
+              <label><input type="radio" name="type" value="put" /> Put</label>
+            </fieldset>
+
+            <fieldset>
+              <legend>Pricing model</legend>
+              <label><input type="radio" name="model" value="bs" checked /> Black–Scholes</label>
+              <label><input type="radio" name="model" value="binomial" /> Binomial CRR</label>
+              <label><input type="radio" name="model" value="mc" /> Monte Carlo</label>
+            </fieldset>
+          </div>
+
+          <div class="form-row form-row-extra">
+            <label class="inline-check">
+              <input type="checkbox" id="compareModels" />
+              Compare Black–Scholes & Binomial
+            </label>
+          </div>
+
+          <fieldset class="scan-fieldset">
+            <legend>Price vs Strike scan (Black–Scholes)</legend>
+            <label>
+              K min
+              <input type="number" id="scanKMin" step="0.01" value="80" />
+            </label>
+            <label>
+              K max
+              <input type="number" id="scanKMax" step="0.01" value="120" />
+            </label>
+            <label>
+              Points
+              <input type="number" id="scanKSteps" step="1" value="9" />
+            </label>
+            <label class="inline-check">
+              <input type="checkbox" id="enableScan" />
+              Enable scan
+            </label>
+          </fieldset>
+
+          <button type="submit" class="btn-primary">Run pricing</button>
+        </form>
+      </section>
+
+      <section class="card">
+        <h2>Results</h2>
+        <div id="results" class="results">
+          <p class="muted">Fill the form and click “Run pricing”.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>Option Pricing Interface – Quantitative Finance</p>
+    </footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
