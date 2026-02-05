@@ -79,7 +79,7 @@ g++ -O3 -std=c++17 main.cpp menu.cpp pricing_models.cpp -o pricer
 npm install
 npm start
 3) Open the dashboard
-http://localhost:3000
+https://option-pricing-dashboard-1.onrender.com
 
 
 
@@ -97,7 +97,7 @@ curl -X POST http://localhost:3000/api/price \
 
 docker build -t option-pricer .
 docker run -p 3001:3000 option-pricer
-Open: http://localhost:3001
+
 
 
 
